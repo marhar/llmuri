@@ -6,12 +6,12 @@ from llmuri import uri_to_litellm
 
 class TestUriToLitellm(unittest.TestCase):
 
-    def zztest_basic_uri_with_prefix(self):
+    def zztest_basic_uri_with_prefix(self) -> None:
         uri = "llm://modelname"
         expected_output = {"model": "modelname"}
         self.assertEqual(uri_to_litellm(uri), expected_output)
 
-    def test_no_uri_prefix(self):
+    def test_no_uri_prefix(self) -> None:
         test_cases = [
             (
                 "aaa/bbb",
@@ -26,7 +26,7 @@ class TestUriToLitellm(unittest.TestCase):
             with self.subTest(uri=uri, expected_output=expected_output):
                 self.assertEqual(uri_to_litellm(uri), expected_output)
 
-    def test_query_parms(self):
+    def test_query_parms(self) -> None:
         test_cases = [
             (
                 "aaa/bbb",
@@ -49,7 +49,7 @@ class TestUriToLitellm(unittest.TestCase):
             with self.subTest(uri=uri, expected_output=expected_output):
                 self.assertEqual(uri_to_litellm(uri), expected_output)
 
-    def test_fragments(self):
+    def test_fragments(self) -> None:
         test_cases = [
             (
                 "aaa/bbb",
@@ -68,7 +68,7 @@ class TestUriToLitellm(unittest.TestCase):
             with self.subTest(uri=uri, expected_output=expected_output):
                 self.assertEqual(uri_to_litellm(uri), expected_output)
 
-    def test_abbreviations(self):
+    def test_abbreviations(self) -> None:
         test_cases = [
             (
                 "mistralai/mistral-medium",

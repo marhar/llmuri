@@ -3,7 +3,7 @@
 llmuri -- URI parsing for LLMs
 """
 
-from urllib.parse import urlparse, parse_qs  # type: ignore[import-not-found]
+from urllib.parse import urlparse, parse_qs
 from devtools import debug  # type: ignore[import-not-found]
 from typing import Dict, List, Tuple
 
