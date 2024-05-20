@@ -1,0 +1,101 @@
+Internet-Draft: Proposal for the "llm" URI Scheme
+
+1. Introduction
+This document proposes a new Uniform Resource Identifier (URI)
+scheme, "llm", intended for identifying and interacting with Large
+Language Models (LLMs) over the Internet. The "llm" scheme aims to
+standardize the way in which applications and users access and query
+LLMs, facilitating interoperability, security, and efficiency.
+
+1.1. Background
+Large Language Models have become ubiquitous in providing sophisticated
+text generation, language understanding, and other AI-driven services.
+However, the absence of a standardized method for accessing these
+models leads to fragmentation and complexity in their integration
+and use. The "llm" URI scheme addresses this gap by providing a
+uniform way to reference and interact with LLMs.
+
+2. Specification Template
+
+2.1. Scheme Name
+The scheme name for the URI is "llm".
+
+2.2. Status
+Permanent.
+
+2.3. Applications/Protocols that Use This URI Scheme Name
+
+The "llm" URI scheme is used by web browsers, API clients, and other
+software applications that require direct interaction with Large
+Language Models for generating text, processing natural language,
+or other AI-driven tasks.
+
+2.4. Encoding Considerations
+
+URI characters in "llm" URIs are encoded according to the rules set
+forth in RFC 3986.
+
+2.5. Intended Usage
+
+The "llm" URI scheme is intended for use in applications where
+direct, standardized access to LLMs is necessary. This includes
+software development, academic research, and any application requiring
+dynamic text generation or language analysis.
+
+2.6. Contributor(s)
+
+Name: Mark Harrison
+Email: marhar@gmail.com
+Affiliation: 
+
+3. Syntax
+
+The "llm" URI scheme follows the generic URI syntax as specified
+in RFC 3986. The scheme-specific syntax is as follows:
+
+llm://provider/model?parameters
+
+provider is the domain name or identifier of the LLM provider.
+
+model specifies the particular model to be queried.
+
+parameters is a query string containing the parameters of the
+request, such as prompt, temperature, and max tokens.
+
+4. Semantics
+
+provider: Identifies the LLM service provider, facilitating access
+to multiple providers under a unified scheme.
+
+model: Allows specific LLMs to be targeted, accommodating the diverse
+range of models available.
+
+parameters: Supports flexible querying by including request-specific
+parameters.
+
+5. Security Considerations
+
+The "llm" URI scheme allows for provider-specific authentication
+information such as access tokens. Care should be taken to ensure
+that this kind of sensitive information is not exposed , especially
+when shared or stored.
+
+It is recommended to avoid this possibility by using environment
+variables or other secure methods to store and access authentication
+information as specified by the specific LLM providers.
+
+6. Interoperability Considerations
+
+To ensure ease of interoperability, an MIT-licensed reference
+implementation is available at https://github.com/marhar/llmuri.
+
+7. Contact
+
+For further information, please contact the contributors listed in
+Section 2.6.
+
+8. References
+
+RFC 3986: Uniform Resource Identifier (URI): Generic Syntax
+
+9. Acknowledgments
