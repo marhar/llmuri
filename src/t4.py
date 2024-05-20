@@ -69,7 +69,7 @@ def batch(description, xs):
 
 def xbatch(description, xs): pass
 
-xbatch('nouri', [
+batch('nouri', [
 "mistralai/mistral-medium",
 "llm://mistralai/mistral-medium",
 ])
@@ -98,20 +98,20 @@ batch('logins', [
 "api.mistral.ai.v1@mistral.ai:80/mname",
 ])
 
-xbatch('query', [
+batch('query', [
 "mistralai/mname?",
 "mistralai/mname?q=a",
 "mistralai/mname?q=a&r=b",
 "mistralai/mname?temperature=0.2&max_tokens=50",
 ])
 
-xbatch('fragments', [
+batch('fragments', [
 "mistralai/mname",
 "mistralai/mname#",
 "mistralai/mname#foo",
 ])
 
-xbatch('first_ones', [
+batch('first_ones', [
 "openai/gpt-4",
 "mistralai/mistral-medium",
 "ollama/llama2",
