@@ -23,6 +23,11 @@ for uri in [
     )
     print(response)
 
+## Installation
+
+```
+pip install llmuri
+```
 
 ## Specification
 
