@@ -4,7 +4,6 @@ llmuri -- URI parsing for LLMs
 """
 
 from urllib.parse import urlparse, parse_qs
-from devtools import debug  # type: ignore[import-not-found]
 from typing import Dict, List, Tuple
 
 api_abbreviations = {
@@ -58,11 +57,8 @@ def uri_to_litellm(uri: str, verbose: bool = False) -> Dict[str, str]:
         model = f"{api_spec}/{model}"
 
     rv["model"] = model
-    # query_dict = parse_qs(p.query)
-    # query_dict2 = {k: v[0] if len(v) == 1 else str(v) for k, v in query_dict.items()}
-    query_dict2 = {
+    query_dict = {
         k: v[0] if len(v) == 1 else str(v) for k, v in parse_qs(p.query).items()
     }
-
-    rv.update(query_dict2)
+    rv.update(query_dict)
     return rv
