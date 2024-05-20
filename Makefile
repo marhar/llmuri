@@ -1,4 +1,6 @@
 # Makefile for llmuri package
+# TODO: verify install actions which have not been tested.
+# TODO: verify that VERSION agrees with setup.py, which I don't think it does.
 
 # Variables
 PACKAGE_NAME=llmuri

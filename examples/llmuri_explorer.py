@@ -1,8 +1,11 @@
 #!/usr/bin/env python
+"""
+This is a test program for experimenting with the LLM URI format.
+Don't use it for anything important.
+"""
+
 from urllib.parse import urlparse
 
-parts="uri,scheme,netloc,path,params,query,fragment,username,password,hostname,port".split(',')
-parts="uri,scheme,path,query".split(',')
 import duckdb
 duckdb.sql("""
 create table t(

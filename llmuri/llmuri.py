@@ -22,7 +22,9 @@ litellm_special_model_prefix = {
 
 
 def uri_to_litellm(uri: str, verbose: bool = False) -> Dict[str, str]:
-    """Returns a dict sutiable for passing to litellm."""
+    """
+    Converts a URI to a dict suitable for passing to litellm.
+    """
 
     rv = {}
 
