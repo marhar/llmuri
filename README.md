@@ -22,6 +22,7 @@ for uri in [
         **kwargs,
     )
     print(response)
+```
 
 ## Installation
 
