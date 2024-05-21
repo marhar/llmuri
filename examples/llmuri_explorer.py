@@ -30,7 +30,7 @@ api_special_litellm_cases = {
 
 def doit(uri):
     #print(uri)
-    if not uri.startswith('llm://'):
+    if not (uri.startswith('llm://')  or uri.startswith('llms://')):
         uri = 'llm://' + uri
     p = urlparse(uri, allow_fragments=False)
 
@@ -118,4 +118,15 @@ batch('first_ones', [
 "openai/gpt-4",
 "mistralai/mistral-medium",
 "ollama/llama2",
+])
+
+print('-'*80)
+batch('foo', [
+"ollama/llama2",
+"ollama@localhost/llama2",
+"ollama@127.0.0.1/llama2",
+"ollama@localhost:11434/llama2",
+"ollama@127.0.0.1:11434/llama2",
+"llm://ollama@localhost/llama2",
+"llms://ollama@localhost/llama2",
 ])

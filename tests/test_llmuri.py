@@ -87,6 +87,37 @@ class TestUriToLitellm(unittest.TestCase):
             with self.subTest(uri=uri, expected_output=expected_output):
                 self.assertEqual(uri_to_litellm(uri), expected_output)
 
+    def test_ssl(self) -> None:
+        test_cases = [
+            (
+                "ollama/llama2",
+                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
+            ),
+            (
+                "llm://ollama/llama2",
+                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
+            ),
+            (
+                "llms://ollama/llama2",
+                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
+            ),
+            (
+                "ollama@127.0.0.1:11434/llama2",
+                {'api_base': 'http://127.0.0.1:11434', 'model': 'ollama/llama2'}
+            ),
+            (
+                "llm://ollama@127.0.0.1:11434/llama2",
+                {'api_base': 'http://127.0.0.1:11434', 'model': 'ollama/llama2'}
+            ),
+            (
+                "llms://ollama@127.0.0.1:11434/llama2",
+                {'api_base': 'https://127.0.0.1:11434', 'model': 'ollama/llama2'}
+            ),
+        ]
+        for uri, expected_output in test_cases:
+            with self.subTest(uri=uri, expected_output=expected_output):
+                self.assertEqual(uri_to_litellm(uri), expected_output)
+
 
 if __name__ == "__main__":
     unittest.main()

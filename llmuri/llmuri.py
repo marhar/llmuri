@@ -28,7 +28,7 @@ def uri_to_litellm(uri: str, verbose: bool = False) -> Dict[str, str]:
 
     rv = {}
 
-    if not uri.startswith("llm://"):
+    if not (uri.startswith("llm://") or uri.startswith("llms://")):
         uri = "llm://" + uri
 
     # We skip these parsed elements: fragments, params, username, password
@@ -44,8 +44,15 @@ def uri_to_litellm(uri: str, verbose: bool = False) -> Dict[str, str]:
         api_spec = p.netloc
         api_base = None
 
-    if api_spec in api_abbreviations:
-        api_spec, api_base = api_abbreviations[api_spec]
+    if api_base:
+        if not (api_base.startswith("http://") or api_base.startswith("https://")):
+            if p.scheme == "llms":
+                api_base = "https://" + api_base
+            if p.scheme == "llm":
+                api_base = "http://" + api_base
+    else:
+        if api_spec in api_abbreviations:
+            api_spec, api_base = api_abbreviations[api_spec]
 
     if api_base:
         rv["api_base"] = api_base

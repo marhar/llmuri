@@ -19,13 +19,29 @@ sample_uris = [
     "mistralai/mistral-medium?temperature=0.2&max_tokens=4",
 ]
 
+sample_uris = [
+    "ollama@localhost:11434/llama2",
+    "ollama@127.0.0.1:11434/llama2",
+    "ollama/llama2",
+    "ollama@example.com:11434/llama2",
+]
 
-def do_one_uri(uri: str) -> None:
+sample_uris = [
+    "ollama/llama2",
+    "ollama@example.com:11434/llama2",
+    "llm://ollama@example.com:11434/llama2",
+    "llms://ollama@example.com:11434/llama2",
+]
+
+
+def do_one_uri(uri: str, dry_run: bool=False) -> None:
     print("-" * 80)
 
     print("uri:", uri)
     kwargs = uri_to_litellm(uri)
     debug(kwargs)
+    if dry_run:
+        return
     try:
         response = completion(
             messages=[{"content": "respond in 20 words. who are you?", "role": "user"}],
@@ -43,7 +59,7 @@ def do_one_uri(uri: str) -> None:
 
 def main() -> None:
     for uri in sample_uris:
-        do_one_uri(uri)
+        do_one_uri(uri, dry_run=False)
 
 
 if __name__ == "__main__":
