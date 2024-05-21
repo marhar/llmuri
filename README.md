@@ -10,11 +10,11 @@ from llmuri import uri_to_litellm
 from litellm import completion
 
 for uri in [
-    "llm://openai/gpt-4",
+    "llm:openai/gpt-4",
     "openai/gpt-4",
-    "llm://ollama/llama2",
-    "llm://mistralai/mistral-medium?temperature=0.2&max_tokens=4",
-    "llm://ollama@example.com:11434/llama2",
+    "llm:ollama/llama2",
+    "llm:mistralai/mistral-medium?temperature=0.2&max_tokens=4",
+    "llm:ollama@example.com:11434/llama2",
 ]:
     kwargs = uri_to_litellm(uri)
     response = completion(
@@ -29,13 +29,27 @@ for uri in [
 pip install llmuri
 ```
 
-## Specification
+## URI Specification
 
-[llm://]{service\_spec}/{model\_name}[?{parameters...}]
+[*scheme*:]*api-spec*[@*host*[:*port*]]/*model-name[?*parameter1*=*value1*[&*parameter2*=*value2*]...
 
-- *service\_spec*: The host/port or other specification of the service location.  Short
-  aliases are provided for well-known LLM services.
+examples:
 
-- *model\_name* is the name of the model to be executed.
+```
+ollama/llama2
+llm:ollama/llama2?temperature=0.2
+llms:ollama@example.com:11434/llama2
+```
 
-- *parameters* are any optional parameters to be passed to the model.
+- *scheme* can be "llm" or "llms" to specify that the LLM is hosted behind
+  an https web service.  If the scheme is ommitted, "llm" is assumed.
+
+- *api-spec* is the name of the LLM service.
+
+- *host* is an optional hostname where the LLM service is located.
+
+- *port* is the service's port number.
+
+- *model-name* is the name of the model to be executed.
+
+- *parameter-list* is a list of model-specific parameters.
