@@ -32,7 +32,7 @@ pip install llmuri
 
 ## URI Specification
 
-[*scheme*:]*api-spec*[@*host*[:*port*]]/*model-name[?*parameter1*=*value1*[&*parameter2*=*value2*]...
+[*scheme*:]*api-spec*[@*host*[:*port*]]/*model-name*[?*parameter1*=*value1*[&*parameter2*=*value2*]...
 
 examples:
 
