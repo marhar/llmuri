@@ -32,7 +32,7 @@ pip install llmuri
 
 ## URI Specification
 
-[*scheme*:]*api-spec*[@*host*[:*port*]]/*model-name*[?*parameter1*=*value1*[&*parameter2*=*value2*]...
+[*scheme*:]*provider*[@*host*[:*port*]]/*model-name*[?*parameter1*=*value1*[&*parameter2*=*value2*]...
 
 examples:
 
@@ -45,7 +45,7 @@ llms:ollama@example.com:11434/llama2
 - *scheme* can be "llm" or "llms" to specify that the LLM is hosted behind
   an https web service.  If the scheme is ommitted, "llm" is assumed.
 
-- *api-spec* is the name of the LLM service.
+- *provider* is the name of the LLM API or service.
 
 - *host* is an optional hostname where the LLM service is located.
 
