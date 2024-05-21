@@ -28,8 +28,11 @@ def uri_to_litellm(uri: str, verbose: bool = False) -> Dict[str, str]:
 
     rv = {}
 
-    if not (uri.startswith("llm://") or uri.startswith("llms://")):
-        uri = "llm://" + uri
+    if not (uri.startswith("llm:") or uri.startswith("llms:")):
+        uri = "llm:" + uri
+
+    # Patch in a // so it can be parsed by urlparse.
+    uri = uri.replace(":", "://", 1)
 
     # We skip these parsed elements: fragments, params, username, password
     p = urlparse(uri, allow_fragments=False)

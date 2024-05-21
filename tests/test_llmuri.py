@@ -7,7 +7,7 @@ from llmuri import uri_to_litellm
 class TestUriToLitellm(unittest.TestCase):
 
     def zztest_basic_uri_with_prefix(self) -> None:
-        uri = "llm://modelname"
+        uri = "llm:modelname"
         expected_output = {"model": "modelname"}
         self.assertEqual(uri_to_litellm(uri), expected_output)
 
@@ -94,11 +94,11 @@ class TestUriToLitellm(unittest.TestCase):
                 {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
             ),
             (
-                "llm://ollama/llama2",
+                "llm:ollama/llama2",
                 {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
             ),
             (
-                "llms://ollama/llama2",
+                "llms:ollama/llama2",
                 {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
             ),
             (
@@ -106,11 +106,11 @@ class TestUriToLitellm(unittest.TestCase):
                 {'api_base': 'http://127.0.0.1:11434', 'model': 'ollama/llama2'}
             ),
             (
-                "llm://ollama@127.0.0.1:11434/llama2",
+                "llm:ollama@127.0.0.1:11434/llama2",
                 {'api_base': 'http://127.0.0.1:11434', 'model': 'ollama/llama2'}
             ),
             (
-                "llms://ollama@127.0.0.1:11434/llama2",
+                "llms:ollama@127.0.0.1:11434/llama2",
                 {'api_base': 'https://127.0.0.1:11434', 'model': 'ollama/llama2'}
             ),
         ]
