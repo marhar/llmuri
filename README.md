@@ -54,3 +54,7 @@ llms:ollama@example.com:11434/llama2
 - *model-name* is the name of the model to be executed.
 
 - *parameter-list* is a list of model-specific parameters.
+
+## Canonical Abbreviations
+
+The canonical set of well-known services is in `canonical-abbreviations.csv`.
