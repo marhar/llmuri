@@ -10,25 +10,19 @@ URI schema names:
 
 Introduction:
 
+    Large Language Models have become ubiquitous in the AI world.
+
+    The absence of a standardized method for specifying and referencing
+    these models leads to fragmentation and complexity in their
+    integration and use.
+
     This document proposes a new Uniform Resource Identifier (URI)
-    scheme, "llm", intended for identifying and interacting with
-    Large Language Models (LLMs) over the Internet and on local
-    hosts.  The "llm" scheme aims to standardize the way in which
+    scheme, "llm" which aims to standardize the way in which
     applications and users access and query LLMs, facilitating
     interoperability, security, and efficiency.
 
-    A related "llms" scheme is identical but specifies a secure
-    connection.
-
-Background:
-
-    Large Language Models have become ubiquitous in providing text
-    and image generation, language understanding, and other AI-driven
-    services.  However, the absence of a standardized method for
-    specifying and accessing these models leads to fragmentation
-    and complexity in their integration and use. The "llm" URI
-    scheme addresses this gap by providing a uniform way to reference
-    and interact with LLMs.
+    A related "llms" scheme is identical but specifies LLM access
+    over a secure connection.
 
 Status:
 
@@ -50,7 +44,8 @@ URI scheme semantics:
     - Both "llm:" and "llms:" are supported schema types.
       "llms:" indicates that the LLM service is hosted on a secure
       connection (e.g.  "https:").  If the schema is not specified
-      but obvious from application context, "llm:" is assumed.
+      but obvious from application context, an implementation may
+      assume the schema is "llm:".
 
     - provider is the name of the LLM API or service.
 
@@ -71,8 +66,7 @@ Examples:
      
 Encoding considerations.
     
-    URI characters in "llm" URIs are encoded according to the rules
-    set forth in RFC 3986.
+    URI characters in "llm" URIs are encoded according to RFC 3986.
 
 Applications/protocols that use this URI scheme name:
 
