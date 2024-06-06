@@ -118,6 +118,49 @@ class TestUriToLitellm(unittest.TestCase):
             with self.subTest(uri=uri, expected_output=expected_output):
                 self.assertEqual(uri_to_litellm(uri), expected_output)
 
+    def test_mem(self) -> None:
+        test_cases = [
+            (
+                "transformers@:mem/gpt2",
+                {'api_base': ':mem', 'model': 'gpt2'}
+            ),
+            (
+                "transformers@FOO:mem/gpt2",
+                {'api_base': 'FOO:mem', 'model': 'gpt2'}
+            ),
+            (
+                "llm:transformers@FOO:mem/gpt2",
+                {'api_base': 'FOO:mem', 'model': 'gpt2'}
+            ),
+            (
+                "llms:transformers@FOO:mem/gpt2",
+                {'api_base': 'FOO:mem', 'model': 'gpt2'}
+            ),
+            (
+                "llms:transformers@:mem/gpt2?a=b&c=d",
+                {'api_base': ':mem', 'model': 'gpt2', 'a': 'b', 'c': 'd'}
+            ),
+            (
+                "llms:transformers@FOO:mem/gpt2?a=b&c=d",
+                {'api_base': 'FOO:mem', 'model': 'gpt2', 'a': 'b', 'c': 'd'}
+            ),
+            (
+                "openapi@:mem/",
+                {'api_base': ':mem', 'model': ''}
+            ),
+            (
+                "openapi@:mem",
+                {'api_base': ':mem', 'model': ''}
+            ),
+            (
+                "llms:openapi@:mem/?a=b&c=d",
+                {'api_base': ':mem', 'model': '', 'a': 'b', 'c': 'd'}
+            ),
+        ]
+        for uri, expected_output in test_cases:
+            with self.subTest(uri=uri, expected_output=expected_output):
+                self.assertEqual(uri_to_litellm(uri), expected_output)
+
 
 if __name__ == "__main__":
     unittest.main()

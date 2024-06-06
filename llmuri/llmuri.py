@@ -47,7 +47,7 @@ def uri_to_litellm(uri: str, verbose: bool = False) -> Dict[str, str]:
         api_spec = p.netloc
         api_base = None
 
-    if api_base:
+    if api_base and not api_base.endswith(":mem"):
         if not (api_base.startswith("http://") or api_base.startswith("https://")):
             if p.scheme == "llms":
                 api_base = "https://" + api_base

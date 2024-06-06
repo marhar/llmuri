@@ -58,3 +58,26 @@ llms:ollama@example.com:11434/llama2
 ## Canonical Abbreviations
 
 The canonical set of well-known services is in `canonical-abbreviations.csv`.
+
+## In-process References
+
+If the `port` portion of the URI is "mem", then the referenced LLM is not
+accessing an external service, but is instead using an LLM that has been
+instantiated in the context of the current process.
+
+This semantics of in-process references is a WIP and subject to change.
+
+- *provider* and *host* are available for llm specification.
+
+```
+llm:A@B:mem/mymodel  #  A,B are available
+llmp:A@B:C/mymodel   #  A,B,C are available if we introduce a new scheme. bad idea?
+```
+
+Examples:
+
+```
+llm:MyTransformer@:mem        # Instantiate an instance of MyTransformer
+llm:openai@:mem/gpt-3.5-turbo # Instantiate an instance of OpenAI() using gpt-3.5-turbo
+llm:completions@:mistralai:mem/mistral-medium  # completions interface?
+```
