@@ -1,14 +1,10 @@
-# Makefile for llmuri package
-# TODO: verify install actions which have not been tested.
-# TODO: verify that VERSION agrees with setup.py, which I don't think it does.
+# Makefile for https://github.com/marhar/llmuri
 
 # Variables
 PACKAGE_NAME=llmuri
 VERSION=0.1.0
 PYTHON=python
 TWINE=twine
-TESTPYPI_REPOSITORY_URL=https://test.pypi.org/legacy/
-PYPI_REPOSITORY_URL=https://pypi.org/legacy/
 
 # Default target
 all: build
@@ -29,10 +25,10 @@ test:
 	$(PYTHON) -m unittest discover -s tests
 
 upload-testpypi: build
-	$(TWINE) upload --repository-url $(TESTPYPI_REPOSITORY_URL) dist/*
+	$(TWINE) upload --repository-url https://packaging.python.org/en/latest/tutorials/packaging-projects/ dist/*
 
 upload-pypi: build
-	$(TWINE) upload --repository-url $(PYPI_REPOSITORY_URL) dist/*
+	$(TWINE) upload dist/*
 
 install-testpypi:
 	pip install --index-url https://test.pypi.org/simple/ $(PACKAGE_NAME)==$(VERSION)
