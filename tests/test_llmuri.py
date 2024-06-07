@@ -5,7 +5,6 @@ from llmuri import uri_to_litellm
 
 
 class TestUriToLitellm(unittest.TestCase):
-
     def zztest_basic_uri_with_prefix(self) -> None:
         uri = "llm:modelname"
         expected_output = {"model": "modelname"}
@@ -36,14 +35,8 @@ class TestUriToLitellm(unittest.TestCase):
                 "llm:aaa/bbb?",
                 {"model": "bbb"},
             ),
-            (
-                "llm:aaa/bbb?a=1",
-                {'a': '1', 'model': 'bbb'}
-            ),
-            (
-                "llm:aaa/bbb?a=1&b=2",
-                {'a': '1', 'b': '2', 'model': 'bbb'}
-            ),
+            ("llm:aaa/bbb?a=1", {"a": "1", "model": "bbb"}),
+            ("llm:aaa/bbb?a=1&b=2", {"a": "1", "b": "2", "model": "bbb"}),
         ]
         for uri, expected_output in test_cases:
             with self.subTest(uri=uri, expected_output=expected_output):
@@ -72,15 +65,15 @@ class TestUriToLitellm(unittest.TestCase):
         test_cases = [
             (
                 "mistralai/mistral-medium",
-                {'api_base': 'https://api.mistral.ai/v1', 'model': 'mistral-medium'},
+                {"api_base": "https://api.mistral.ai/v1", "model": "mistral-medium"},
             ),
             (
                 "openai/gpt-4",
-                {'api_base': 'https://api.openai.com/v1', 'model': 'gpt-4'},
+                {"api_base": "https://api.openai.com/v1", "model": "gpt-4"},
             ),
             (
                 "ollama/llama2",
-                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'},
+                {"api_base": "http://localhost:11434", "model": "ollama/llama2"},
             ),
         ]
         for uri, expected_output in test_cases:
@@ -91,27 +84,27 @@ class TestUriToLitellm(unittest.TestCase):
         test_cases = [
             (
                 "ollama/llama2",
-                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
+                {"api_base": "http://localhost:11434", "model": "ollama/llama2"},
             ),
             (
                 "llm:ollama/llama2",
-                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
+                {"api_base": "http://localhost:11434", "model": "ollama/llama2"},
             ),
             (
                 "llms:ollama/llama2",
-                {'api_base': 'http://localhost:11434', 'model': 'ollama/llama2'}
+                {"api_base": "http://localhost:11434", "model": "ollama/llama2"},
             ),
             (
                 "ollama@127.0.0.1:11434/llama2",
-                {'api_base': 'http://127.0.0.1:11434', 'model': 'ollama/llama2'}
+                {"api_base": "http://127.0.0.1:11434", "model": "ollama/llama2"},
             ),
             (
                 "llm:ollama@127.0.0.1:11434/llama2",
-                {'api_base': 'http://127.0.0.1:11434', 'model': 'ollama/llama2'}
+                {"api_base": "http://127.0.0.1:11434", "model": "ollama/llama2"},
             ),
             (
                 "llms:ollama@127.0.0.1:11434/llama2",
-                {'api_base': 'https://127.0.0.1:11434', 'model': 'ollama/llama2'}
+                {"api_base": "https://127.0.0.1:11434", "model": "ollama/llama2"},
             ),
         ]
         for uri, expected_output in test_cases:
@@ -120,41 +113,26 @@ class TestUriToLitellm(unittest.TestCase):
 
     def test_mem(self) -> None:
         test_cases = [
-            (
-                "transformers@:mem/gpt2",
-                {'api_base': ':mem', 'model': 'gpt2'}
-            ),
-            (
-                "transformers@FOO:mem/gpt2",
-                {'api_base': 'FOO:mem', 'model': 'gpt2'}
-            ),
-            (
-                "llm:transformers@FOO:mem/gpt2",
-                {'api_base': 'FOO:mem', 'model': 'gpt2'}
-            ),
+            ("transformers@:mem/gpt2", {"api_base": ":mem", "model": "gpt2"}),
+            ("transformers@FOO:mem/gpt2", {"api_base": "FOO:mem", "model": "gpt2"}),
+            ("llm:transformers@FOO:mem/gpt2", {"api_base": "FOO:mem", "model": "gpt2"}),
             (
                 "llms:transformers@FOO:mem/gpt2",
-                {'api_base': 'FOO:mem', 'model': 'gpt2'}
+                {"api_base": "FOO:mem", "model": "gpt2"},
             ),
             (
                 "llms:transformers@:mem/gpt2?a=b&c=d",
-                {'api_base': ':mem', 'model': 'gpt2', 'a': 'b', 'c': 'd'}
+                {"api_base": ":mem", "model": "gpt2", "a": "b", "c": "d"},
             ),
             (
                 "llms:transformers@FOO:mem/gpt2?a=b&c=d",
-                {'api_base': 'FOO:mem', 'model': 'gpt2', 'a': 'b', 'c': 'd'}
+                {"api_base": "FOO:mem", "model": "gpt2", "a": "b", "c": "d"},
             ),
-            (
-                "openapi@:mem/",
-                {'api_base': ':mem', 'model': ''}
-            ),
-            (
-                "openapi@:mem",
-                {'api_base': ':mem', 'model': ''}
-            ),
+            ("openapi@:mem/", {"api_base": ":mem", "model": ""}),
+            ("openapi@:mem", {"api_base": ":mem", "model": ""}),
             (
                 "llms:openapi@:mem/?a=b&c=d",
-                {'api_base': ':mem', 'model': '', 'a': 'b', 'c': 'd'}
+                {"api_base": ":mem", "model": "", "a": "b", "c": "d"},
             ),
         ]
         for uri, expected_output in test_cases:
