@@ -4,7 +4,7 @@ setup(
     name='llmuri',
     version='0.1.0',
     author='Mark Harrison',
-    author_email='mark@tigereye.com',
+    author_email='mark@arrbot.org',
     description='LLM URI Parsing.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

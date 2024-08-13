@@ -99,14 +99,14 @@ Security considerations.
 Contact.
 
     Mark Harrison
-    TigerEye Labs
-    mark@tigereye.com
+    ArrBot Educational Robots
+    mark@arrbot.org
       
 Author:
 
     Mark Harrison
-    TigerEye Labs
-    mark@tigereye.com
+    ArrBot Educational Robots
+    mark@arrbot.org
       
 References.
 
